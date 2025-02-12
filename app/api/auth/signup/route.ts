@@ -14,29 +14,36 @@ export async function POST(req: NextRequest) {
     password: z.string(),
   });
 
-  const pasrsedBody = requiredBody.safeParse(body);
+  const parsedBody = requiredBody.safeParse(body);
 
-  if (!pasrsedBody.success) {
+  if (!parsedBody.success) {
     return NextResponse.json(
       { error: "Invalid credentials." },
       { status: 400 }
     );
   }
 
-  const firstname = pasrsedBody.data.firstname;
-  const lastname = pasrsedBody.data.lastname;
-  const email = pasrsedBody.data.email;
-  const password = pasrsedBody.data.password;
+  const firstname = parsedBody.data.firstname;
+  const lastname = parsedBody.data.lastname;
+  const email = parsedBody.data.email;
+  const password = parsedBody.data.password;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 7);
 
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         firstname,
         lastname,
         email,
         password: hashedPassword,
+      },
+    });
+
+    await prisma.account.create({
+      data: {
+        balance: Math.floor(Math.random() * 10000),
+        userId: user.id,
       },
     });
 

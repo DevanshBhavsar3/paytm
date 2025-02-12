@@ -15,5 +15,5 @@ export async function middleware(req: NextRequestWithAuth) {
 }
 
 export const config = {
-  matcher: "/api/user",
+  matcher: ["/api/user/:path*", "/api/account/:path*"],
 };

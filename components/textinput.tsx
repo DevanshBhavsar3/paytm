@@ -1,10 +1,12 @@
-import { Ref } from "react";
+"use client";
 
-interface TextInputProps {
-  label: string;
+import { InputHTMLAttributes, Ref } from "react";
+
+interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
   placeholder?: string;
-  type: "text" | "password" | "email";
-  reference: Ref<HTMLInputElement | null>;
+  type: "text" | "password" | "email" | "number";
+  reference?: Ref<HTMLInputElement | null>;
 }
 
 export function TextInput({
@@ -12,6 +14,7 @@ export function TextInput({
   placeholder,
   type,
   reference,
+  ...defaultConfig
 }: TextInputProps) {
   return (
     <div className="flex flex-col">
@@ -22,6 +25,7 @@ export function TextInput({
         placeholder={placeholder}
         className="border border-black"
         ref={reference}
+        {...defaultConfig}
       />
     </div>
   );

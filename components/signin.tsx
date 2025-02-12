@@ -35,7 +35,7 @@ export default function Signin() {
       <form className="flex flex-col">
         <Heading text="Signin" size="lg" />
         <TextInput type="email" label="Email" reference={emailRef} />
-        <TextInput type="text" label="Password" reference={passwordRef} />
+        <TextInput type="password" label="Password" reference={passwordRef} />
         {error && <span className="text-red-500">{error}</span>}
         <Button text="Signin" type="submit" onClick={(e) => handleSignin(e)} />
       </form>

@@ -51,7 +51,7 @@ export default function SignUp() {
         <TextInput type="text" label="First name" reference={firstNameRef} />
         <TextInput type="text" label="Last name" reference={lastNameRef} />
         <TextInput type="email" label="Email" reference={emailRef} />
-        <TextInput type="text" label="Password" reference={passwordRef} />
+        <TextInput type="password" label="Password" reference={passwordRef} />
         {error && <span className="text-red-500">{error}</span>}
         <Button text="Signup" type="submit" onClick={(e) => handleSignup(e)} />
       </form>

@@ -25,16 +25,23 @@ export async function POST(req: NextRequest) {
 
   const { to, amount } = parsedBody.data;
 
+  if (userId === to) {
+    return NextResponse.json(
+      { error: "Can't send yourself money." },
+      { status: 400 }
+    );
+  }
+
   try {
     await prisma.$transaction(async (tx) => {
       const sender = await tx.account.update({
-        where: {
-          id: userId,
-        },
         data: {
           balance: {
             decrement: amount,
           },
+        },
+        where: {
+          userId,
         },
       });
 
@@ -44,7 +51,7 @@ export async function POST(req: NextRequest) {
 
       await tx.account.update({
         where: {
-          id: to,
+          userId: to,
         },
         data: {
           balance: {

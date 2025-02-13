@@ -3,6 +3,7 @@
 import axios from "axios";
 import { Heading } from "./heading";
 import { useEffect, useState } from "react";
+import card from "@/public/card.png";
 
 export function Balance() {
   const [balance, setBalance] = useState<number>(0);
@@ -27,9 +28,11 @@ export function Balance() {
   getData();
 
   return (
-    <div>
-      {" "}
-      <Heading text={`Your balance Rs.${balance}`} size="md" />
+    <div
+      className={`bg-slate-100 h-1/3 mx-1/2 bg-repeat bg-[auto_72px] bg-blend-soft-light flex justify-center items-center border border-black/10 rounded-lg`}
+      style={{ backgroundImage: `url(${card.src})` }}
+    >
+      <Heading text={`Balance: ₹${balance}`} size="lg" />
     </div>
   );
 }

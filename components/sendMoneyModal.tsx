@@ -46,7 +46,13 @@ export function SendMoneyModal({ receiver }: { receiver: User }) {
           reference={amountRef}
           defaultValue={0}
         />
-        <Button type="submit" text="Send" onClick={(e) => handleTransfer(e)} />
+        <Button
+          type="submit"
+          text="Send"
+          size="md"
+          variant="primary"
+          onClick={(e) => handleTransfer(e)}
+        />
       </form>
       {error && <span>{error}</span>}
     </div>

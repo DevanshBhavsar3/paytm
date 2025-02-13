@@ -4,7 +4,7 @@ interface CardProps {
 
 export function Card({ children }: CardProps) {
   return (
-    <div className="border border-black/50 rounded-md w-fit p-5 bg-slate-50">
+    <div className="w-full border border-black/10 rounded-md p-5 flex flex-col gap-3">
       {children}
     </div>
   );

@@ -6,6 +6,7 @@ import axios from "axios";
 import { Button } from "./button";
 import { SendMoneyModal } from "./sendMoneyModal";
 import { User } from "@/types";
+import { Heading } from "./heading";
 
 export function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -31,8 +32,8 @@ export function Users() {
   }, [searchValue]);
 
   return (
-    <div>
-      Users
+    <div className="flex flex-col gap-3">
+      <Heading text="All Users" size="md" />
       <TextInput
         label="Search"
         type="text"
@@ -43,6 +44,8 @@ export function Users() {
         <div key={user.id}>
           {JSON.stringify(user)}
           <Button
+            size="sm"
+            variant="secondary"
             type="button"
             text="Send Money"
             onClick={(e) => setCurrentTransactions(user)}

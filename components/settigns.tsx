@@ -36,7 +36,13 @@ export function Settings() {
         <TextInput type="text" label="Last name" reference={lastnameRef} />
         <TextInput type="password" label="Password" reference={passwordRef} />
         {error && <span>{error}</span>}
-        <Button text="Update" type="submit" onClick={(e) => handleUpdate(e)} />
+        <Button
+          text="Update"
+          type="submit"
+          size="md"
+          variant="primary"
+          onClick={(e) => handleUpdate(e)}
+        />
       </form>
     </div>
   );

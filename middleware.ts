@@ -6,7 +6,7 @@ async function checkForAuth(req: NextRequestWithAuth) {
   const token = await getToken({ req });
 
   if (!token) {
-    return NextResponse.redirect(new URL("/invalid", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 }
 

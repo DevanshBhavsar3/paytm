@@ -8,6 +8,7 @@ import { TextInput } from "./textinput";
 import { MouseEvent, useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { RiMoneyRupeeCircleLine } from "react-icons/ri";
 
 export default function SignUp() {
   const router = useRouter();
@@ -45,16 +46,28 @@ export default function SignUp() {
   }
 
   return (
-    <Card>
-      <form className="flex flex-col">
-        <Heading text="Signup" size="lg" />
-        <TextInput type="text" label="First name" reference={firstNameRef} />
-        <TextInput type="text" label="Last name" reference={lastNameRef} />
-        <TextInput type="email" label="Email" reference={emailRef} />
-        <TextInput type="password" label="Password" reference={passwordRef} />
-        {error && <span className="text-red-500">{error}</span>}
-        <Button text="Signup" type="submit" onClick={(e) => handleSignup(e)} />
+    <div className="h-screen flex flex-col justify-center items-center bg-slate-100">
+      <form className="flex flex-col justify-center items-left w-full gap-3 max-w-md">
+        <div className="flex justify-left items-center gap-2">
+          <RiMoneyRupeeCircleLine size={32} className="text-blue-500" />
+          <Heading text="Welcome to ePay" size="lg" />
+        </div>
+        <Card>
+          <Heading text="Signup" size="md" />
+          <TextInput type="text" label="First name" reference={firstNameRef} />
+          <TextInput type="text" label="Last name" reference={lastNameRef} />
+          <TextInput type="email" label="Email" reference={emailRef} />
+          <TextInput type="password" label="Password" reference={passwordRef} />
+          {error && <span className="text-red-500">{error}</span>}
+          <Button
+            size="md"
+            variant="primary"
+            text="Signup"
+            type="submit"
+            onClick={(e) => handleSignup(e)}
+          />
+        </Card>
       </form>
-    </Card>
+    </div>
   );
 }

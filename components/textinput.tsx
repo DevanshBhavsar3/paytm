@@ -1,6 +1,7 @@
 "use client";
 
 import { InputHTMLAttributes, Ref } from "react";
+import { Heading } from "./heading";
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -18,12 +19,14 @@ export function TextInput({
 }: TextInputProps) {
   return (
     <div className="flex flex-col">
-      <label htmlFor={label}>{label}</label>
+      <label htmlFor={label} className="text-md font-medium">
+        {label}
+      </label>
       <input
         type={type}
         id={label}
         placeholder={placeholder}
-        className="border border-black"
+        className="border border-black/10 rounded-lg text-sm px-4 py-2"
         ref={reference}
         {...defaultConfig}
       />

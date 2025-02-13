@@ -5,10 +5,10 @@ interface HeadingProps {
 
 const sizeVariants: Record<string, string> = {
   sm: "text-md",
-  md: "text-lg",
-  lg: "text-3xl",
+  md: "text-xl",
+  lg: "text-2xl",
 };
 
 export function Heading({ text, size }: HeadingProps) {
-  return <h1 className={`${sizeVariants[size]}`}>{text}</h1>;
+  return <h1 className={`${sizeVariants[size]} font-semibold`}>{text}</h1>;
 }

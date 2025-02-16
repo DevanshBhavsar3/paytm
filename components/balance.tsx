@@ -9,6 +9,7 @@ export function Balance() {
   const [balance, setBalance] = useState<number>(0);
 
   useEffect(() => {
+    getData();
     const timer = setInterval(() => {
       getData();
     }, 10000);
@@ -19,12 +20,16 @@ export function Balance() {
   }, []);
 
   async function getData() {
-    const response = await axios.get("/api/account/balance");
-    const balance = response.data.balance;
-    setBalance(balance);
+    try {
+      const baseUrl =
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+      const response = await axios.get(`${baseUrl}/api/account/balance`);
+      const balance = response.data.balance;
+      setBalance(balance);
+    } catch (error) {
+      console.error("Failed to fetch balance:", error);
+    }
   }
-
-  getData();
 
   return (
     <div

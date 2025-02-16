@@ -1,12 +1,12 @@
 "use client";
 
 import { User } from "@/types";
-import { TextInput } from "./textinput";
-import { MouseEvent, useRef, useState } from "react";
-import { Button } from "./button";
 import axios, { AxiosError } from "axios";
-import { Heading } from "./heading";
+import { MouseEvent, useRef, useState } from "react";
 import { RxCrossCircled } from "react-icons/rx";
+import { Button } from "./button";
+import { Heading } from "./heading";
+import { TextInput } from "./textinput";
 
 interface SendMoneyModalProps {
   receiver: User;
@@ -24,6 +24,11 @@ export function SendMoneyModal({
 
   async function handleTransfer(e: MouseEvent) {
     e.preventDefault();
+
+    if (Number(amountRef.current?.value) <= 0) {
+      setError("Invalid amount.");
+      return;
+    }
 
     try {
       await axios.post("/api/account/transfer", {
@@ -66,10 +71,11 @@ export function SendMoneyModal({
         </div>
         <TextInput
           type="number"
-          label="Amount ₹"
+          label="Amount (₹)"
           placeholder="Enter amount"
           reference={amountRef}
           defaultValue={0}
+          min={0}
         />
         {error && <span className="text-red-500">{error}</span>}
         <Button

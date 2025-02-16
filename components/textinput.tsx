@@ -1,7 +1,6 @@
 "use client";
 
 import { InputHTMLAttributes, Ref } from "react";
-import { Heading } from "./heading";
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;

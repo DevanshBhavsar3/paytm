@@ -1,8 +1,8 @@
 import prisma from "@/app/lib/db";
-import NextAuth, { Session } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
+import NextAuth, { Session } from "next-auth";
 import { JWT } from "next-auth/jwt";
+import Credentials from "next-auth/providers/credentials";
 
 interface user {
   id: string;

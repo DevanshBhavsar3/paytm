@@ -1,7 +1,7 @@
+import { Balance } from "@/components/balance";
+import { Users } from "@/components/users";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { Users } from "@/components/users";
-import { Balance } from "@/components/balance";
 
 export default async function DashboardPage() {
   const session = await getServerSession();

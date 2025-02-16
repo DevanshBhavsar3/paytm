@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { TextInput } from "./textinput";
-import axios from "axios";
-import { Button } from "./button";
-import { SendMoneyModal } from "./sendMoneyModal";
 import { User } from "@/types";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Button } from "./button";
 import { Heading } from "./heading";
-import { UserSkeleton } from "./user-skeleton";
+import { SendMoneyModal } from "./sendMoneyModal";
+import { TextInput } from "./textinput";
 
 export function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -17,9 +16,7 @@ export function Users() {
 
   useEffect(() => {
     async function getUsers() {
-      const response = await axios.get(
-        `http://localhost:3000/api/user/bulk?filter=${searchValue}`
-      );
+      const response = await axios.get(`/api/user/bulk?filter=${searchValue}`);
 
       setUsers(response.data);
     }
@@ -42,7 +39,7 @@ export function Users() {
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div>
       <Heading text="All Users" size="md" />
       <TextInput
         label="Search"
@@ -50,43 +47,49 @@ export function Users() {
         placeholder="Search"
         onChange={(e) => setSearchValue(e.target.value)}
       />
-      {!users.length && <UserSkeleton />}
 
-      {users.map((user) => (
-        <div
-          key={user.id}
-          className="flex justify-between items-center bg-slate-100 px-4 py-2 rounded-lg"
-        >
-          <div className="flex justify-center items-center gap-1">
-            <p className="bg-slate-400 text-white rounded-full w-8 h-8 flex justify-center items-center">
-              {user.firstname[0]}
-              {user.lastname[0]}
-            </p>
-            <p>{user.firstname}</p>
-            <p>{user.lastname}</p>
+      <div className="flex flex-col mt-3 border rounded-lg overflow-hidden">
+        {!users.length && <span className="px-4 py-2">No users found!</span>}
+        {users.map((user, index) => (
+          <div
+            key={user.id}
+            className={`flex justify-between items-center px-4 py-2 border-b w-full ${
+              !(index % 2) && "bg-slate-100"
+            }`}
+          >
+            <div className="flex justify-center items-center gap-2">
+              <p className="bg-blue-400 text-white rounded-full w-8 h-8 flex justify-center items-center">
+                {user.firstname[0]}
+                {user.lastname[0]}
+              </p>
+              <span className="flex justify-center items-center gap-1">
+                <p>{user.firstname}</p>
+                <p>{user.lastname}</p>
+              </span>
+            </div>
+            <Button
+              size="sm"
+              variant="secondary"
+              type="button"
+              text="Send Money"
+              onClick={(e) => setCurrentReciever(user)}
+            />
           </div>
-          <Button
-            size="sm"
-            variant="secondary"
-            type="button"
-            text="Send Money"
-            onClick={(e) => setCurrentReciever(user)}
+        ))}
+        {currentReciever && (
+          <SendMoneyModal
+            receiver={currentReciever}
+            setReceiver={setCurrentReciever}
+            onSend={handleTransactionSent}
           />
-        </div>
-      ))}
-      {currentReciever && (
-        <SendMoneyModal
-          receiver={currentReciever}
-          setReceiver={setCurrentReciever}
-          onSend={handleTransactionSent}
-        />
-      )}
+        )}
 
-      {success && (
-        <span className="bg-green-500 text-white px-4 py-2 rounded-lg w-fit absolute bottom-5 right-5">
-          Transaction successfull.
-        </span>
-      )}
+        {success && (
+          <span className="bg-green-500 text-white px-4 py-2 rounded-lg w-fit fixed bottom-5 right-5">
+            Transaction successfull.
+          </span>
+        )}
+      </div>
     </div>
   );
 }

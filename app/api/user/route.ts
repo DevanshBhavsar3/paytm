@@ -1,8 +1,8 @@
 import prisma from "@/app/lib/db";
+import bcrypt from "bcrypt";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
-import bcrypt from "bcrypt";
 
 export async function PUT(req: NextRequest) {
   const token = await getToken({ req });

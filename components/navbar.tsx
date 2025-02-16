@@ -2,10 +2,10 @@
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { RiMoneyRupeeCircleLine } from "react-icons/ri";
-import { Button } from "./button";
 import { useRouter } from "next/navigation";
 import { IoMdSettings } from "react-icons/io";
+import { RiMoneyRupeeCircleLine } from "react-icons/ri";
+import { Button } from "./button";
 
 export function Navbar() {
   const router = useRouter();

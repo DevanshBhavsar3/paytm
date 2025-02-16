@@ -3,10 +3,10 @@ import { MouseEvent } from "react";
 interface ButtonProps {
   text?: string;
   type: "submit" | "button";
-  variant: "primary" | "secondary" | "icon";
+  variant: "primary" | "secondary" | "icon" | "tertiary";
   size: "sm" | "md" | "lg";
   icon?: React.ReactElement;
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const variantStyle = {
@@ -14,6 +14,7 @@ const variantStyle = {
   secondary:
     "border border-blue-500 hover:bg-blue-500 hover:text-white rounded-md",
   icon: "hover:bg-slate-200 text-center p-1 rounded-full",
+  tertiary: "bg-white text-blue-500 rounded-lg hover:bg-white/90",
 };
 
 const sizeStyles = {
@@ -34,7 +35,7 @@ export function Button({
     <button
       type={type}
       onClick={onClick}
-      className={`${variantStyle[variant]} ${sizeStyles[size]} transition-all`}
+      className={`${variantStyle[variant]} ${sizeStyles[size]} transition-all w-fit`}
     >
       {icon}
       {text}

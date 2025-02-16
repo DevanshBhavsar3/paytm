@@ -1,13 +1,13 @@
 "use client";
 
-import { MouseEvent, useRef, useState } from "react";
-import { Button } from "./button";
-import { TextInput } from "./textinput";
 import axios, { AxiosError } from "axios";
-import { Heading } from "./heading";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { MouseEvent, useRef, useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
+import { Button } from "./button";
+import { Heading } from "./heading";
+import { TextInput } from "./textinput";
 
 export function Settings() {
   const router = useRouter();

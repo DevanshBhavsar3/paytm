@@ -45,6 +45,7 @@ export async function PUT(req: NextRequest) {
 
     return NextResponse.json({ message: "Credentials updated." });
   } catch (e) {
+    console.error(e);
     return NextResponse.json({ error: "Failed to update." }, { status: 400 });
   }
 }

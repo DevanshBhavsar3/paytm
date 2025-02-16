@@ -72,7 +72,7 @@ export function Users() {
               variant="secondary"
               type="button"
               text="Send Money"
-              onClick={(e) => setCurrentReciever(user)}
+              onClick={() => setCurrentReciever(user)}
             />
           </div>
         ))}

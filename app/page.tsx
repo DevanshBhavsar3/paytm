@@ -4,6 +4,7 @@ import { Button } from "@/components/button";
 import { Details } from "@/components/details";
 import { Footer } from "@/components/footer";
 import { Heading } from "@/components/heading";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import { FiCreditCard } from "react-icons/fi";
 import { HiOutlineLightningBolt } from "react-icons/hi";
@@ -31,7 +32,7 @@ export default function Home() {
           />
         </div>
         <div className="w-full h-1/2 rounded-lg border-2 border-blue-200 bg-blue-100/70 p-2">
-          <img
+          <Image
             src="/demo.png"
             alt="demo image"
             className="rounded-lg w-full h-full object-cover border-2 border-blue-200"

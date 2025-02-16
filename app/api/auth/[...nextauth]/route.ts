@@ -34,7 +34,7 @@ const handler = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const email = credentials?.email;
         const password = credentials?.password;
 
@@ -59,6 +59,7 @@ const handler = NextAuth({
               return null;
             }
           } catch (e) {
+            console.error(e);
             return null;
           }
         } else {

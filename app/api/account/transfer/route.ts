@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
     });
     return NextResponse.json({ message: "Transfer successful." });
   } catch (e) {
+    console.error(e);
     return NextResponse.json({ error: "Transfer failed." }, { status: 400 });
   }
 }

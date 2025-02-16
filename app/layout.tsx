@@ -5,8 +5,8 @@ import "./globals.css";
 import Providers from "./Providers";
 
 const inter = Inter({
+  subsets: ["latin"],
   variable: "--font-inter",
-  style: "normal",
 });
 
 export const metadata: Metadata = {

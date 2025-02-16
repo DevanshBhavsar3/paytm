@@ -1,4 +1,4 @@
-import { Settings } from "@/components/settigns";
+import { Settings } from "@/components/settings";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 

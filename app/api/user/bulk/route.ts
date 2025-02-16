@@ -11,11 +11,13 @@ export async function GET(req: NextRequest) {
         {
           firstname: {
             contains: filter,
+            mode: "insensitive",
           },
         },
         {
           lastname: {
             contains: filter,
+            mode: "insensitive",
           },
         },
       ],

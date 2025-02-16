@@ -7,6 +7,7 @@ import card from "@/public/card.png";
 
 export function Balance() {
   const [balance, setBalance] = useState<number>(0);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       getData();

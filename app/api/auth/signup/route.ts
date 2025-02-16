@@ -49,6 +49,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "Signed up." });
   } catch (e) {
+    console.log(e);
     if (e instanceof Prisma.PrismaClientKnownRequestError) {
       if (e.code === "P2002") {
         return NextResponse.json(
@@ -56,11 +57,11 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
       }
+    } else {
+      return NextResponse.json(
+        { error: "Something went wrong." },
+        { status: 400 }
+      );
     }
-
-    return NextResponse.json(
-      { error: "Something went wrong." },
-      { status: 400 }
-    );
   }
 }
